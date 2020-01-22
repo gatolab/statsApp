@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>633311362610-gk7ultb68jge1ovavaplgtcmg3qrgkto.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.633311362610-gk7ultb68jge1ovavaplgtcmg3qrgkto</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAaNLdmMca_lSugnshkzotjuG5i8X1ZhSk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>633311362610</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gatoLab.statsApp</string>
+	<key>PROJECT_ID</key>
+	<string>statsapp-ios</string>
+	<key>STORAGE_BUCKET</key>
+	<string>statsapp-ios.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:633311362610:ios:8c4a1cb8f93bb192ff462b</string>
+	<key>DATABASE_URL</key>
+	<string>https://statsapp-ios.firebaseio.com</string>
+</dict>
+</plist>
