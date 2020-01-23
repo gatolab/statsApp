@@ -74,8 +74,8 @@
 		BD999D7C23D7E94800416A0D /* firebase */ = {
 			isa = PBXGroup;
 			children = (
-				BDC8A24523D91AD600FBD861 /* Hit.swift */,
 				BDC8A24323D910CB00FBD861 /* Item.swift */,
+				BDC8A24523D91AD600FBD861 /* Hit.swift */,
 				BD85C25D23D7F3E000AC2C5D /* AppUser.swift */,
 				BD999D7D23D7E96200416A0D /* GoogleService-Info.plist */,
 			);

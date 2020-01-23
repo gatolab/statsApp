@@ -108,5 +108,18 @@ class Item {
         }
     }
     
+    // MARK: Stats
+    func getHitsCountPer(year: Int, month: Int? = nil) -> Int {
+        if let _month = month {
+            return self.hits.filter({$0.year==year && $0.month==_month}).count
+        } else {
+            return self.hits.filter({$0.year==year}).count
+        }
+    }
+    
+    func getValidYears() -> [Int] {
+        let years = self.hits.map({ $0.year })
+        return Array(Set(years).sorted())
+    }
     
 }

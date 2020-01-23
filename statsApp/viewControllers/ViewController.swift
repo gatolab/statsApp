@@ -19,14 +19,14 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
 
         if(AppUser.recoverLogin()) {
-            getAllHits()
+            getPeriods()
         }
     }
     
     
     // MARK: Hits
     func addHit() {
-        let newHit = Hit(item_uid: "xvgwc0qo1Supf7z3AWkg", year: 2015, month: 12, day: 5)
+        let newHit = Hit(item_uid: "xvgwc0qo1Supf7z3AWkg", year: 2016, month: 2, day: 3)
         newHit.saveToServer(firstTime: true) { (error) in
             if(error==nil){ print("hit creado!") }
         }
@@ -36,14 +36,42 @@ class ViewController: UIViewController {
         Item.getAll { (items) in
             if let _items = items {
                 if let item = _items.first {
-                    
                     item.trace()
                     item.loadAllHits {
                         for h in item.hits {
                             h.trace()
                         }
                     }
-                    
+                }
+            }
+        }
+    }
+    
+    func getStats() {
+        Item.getAll { (items) in
+            if let _items = items {
+                if let item = _items.first {
+                    item.trace()
+                    item.loadAllHits {
+                        let count = item.getHitsCountPer(year: 2015, month: 12)
+                        print(count, "hits")
+                    }
+                }
+            }
+        }
+    }
+    
+    func getPeriods() {
+        Item.getAll { (items) in
+            if let _items = items {
+                if let item = _items.first {
+                    item.trace()
+                    item.loadAllHits {
+                        let years = item.getValidYears()
+                        for y in years {
+                            print("Year:", y, " hits:", item.getHitsCountPer(year: y))
+                        }
+                    }
                 }
             }
         }
