@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class Item {
+class Activity {
     
     var uid: String = ""
     var name: String = ""
@@ -19,12 +19,12 @@ class Item {
     
     // MARK: Initialization
     init(name: String) {
-        // para crear nuevos items de cero
+        // para crear nuevas actividades de cero
         self.name = name
     }
     
     init(uid: String, data: [String: Any]) {
-        // items traidos desde la base de datos
+        // actividades traidas desde la base de datos
         self.uid = uid
         self.name = data["name"] as! String
     }
@@ -33,7 +33,7 @@ class Item {
     private static func collection() -> CollectionReference? {
         if let _uid = AppUser.current?.uid {
             let storeRef = Firestore.firestore()
-            return storeRef.collection("users/" + _uid + "/items")
+            return storeRef.collection("users/" + _uid + "/activities")
         } else {
             return nil
         }
@@ -41,9 +41,9 @@ class Item {
     
     // MARK: Actions
     func trace() {
-        print("----------")
-        print("ITEM uid:", self.uid)
-        print("ITEM name:", self.name)
+        TRACE("ACTIVITY")
+        TRACE("uid: " + self.uid)
+        TRACE("name: " + self.name)
     }
     
     func saveToServer(firstTime: Bool = false, callback: @escaping (Error?) -> () ) {
@@ -51,7 +51,7 @@ class Item {
             "name": self.name
         ] as [String: Any]
 
-        if let _collection = Item.collection() {
+        if let _collection = Activity.collection() {
             if(firstTime) {
                 let newItem = _collection.document()
                 newItem.setData(data) { (error) in
@@ -68,14 +68,14 @@ class Item {
         }
     }
     
-    static func getAll(callback: @escaping ([Item]?) -> ()) {
-        if let _collection = Item.collection() {
+    static func getAll(callback: @escaping ([Activity]?) -> ()) {
+        if let _collection = Activity.collection() {
             _collection.getDocuments { (snapshot, error) in
                 if(error == nil) {
-                    var result: [Item] = []
+                    var result: [Activity] = []
                     if let _docs = snapshot?.documents {
                         for d in _docs {
-                            let newItem = Item(uid: d.documentID, data: d.data())
+                            let newItem = Activity(uid: d.documentID, data: d.data())
                             result.append(newItem)
                         }
                     }
@@ -87,11 +87,19 @@ class Item {
         }
     }
     
+    func delete(callback: @escaping (Error?) -> ()) {
+        if let _collection = Activity.collection() {
+            _collection.document(self.uid).delete { (error) in
+                callback(error)
+            }
+        }
+    }
+    
     // MARK: Hits
     func loadAllHits(callback: @escaping () -> ()) {
         self.hits = []
         
-        if let _collection = Item.collection()?.document(self.uid).collection("hits") {
+        if let _collection = Activity.collection()?.document(self.uid).collection("hits") {
             _collection.getDocuments { (snapshot, error) in
                 if(error == nil) {
                     if let _docs = snapshot?.documents {

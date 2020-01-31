@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemCell: UITableViewCell {
+class ActivityCell: UITableViewCell {
 
     @IBOutlet weak var imgImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,11 +21,11 @@ class ItemCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
-    func setData(_ item: Item) {
+    func setData(_ item: Activity) {
+        self.imgImageView.image = nil
         self.nameLabel.text = item.name
     }
 }

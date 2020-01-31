@@ -14,9 +14,16 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
 
         if(AppUser.recoverLogin()) {
-            self.performSegue(withIdentifier: "gotoItems", sender: self)
+            self.performSegue(withIdentifier: "gotoActivities", sender: self)
         }
     }
+    
+    
+    
+    
+    
+    
+    
     
     
     // MARK: Hits
@@ -28,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     func getAllHits() {
-        Item.getAll { (items) in
+        Activity.getAll { (items) in
             if let _items = items {
                 if let item = _items.first {
                     item.trace()
@@ -43,7 +50,7 @@ class ViewController: UIViewController {
     }
     
     func getStats() {
-        Item.getAll { (items) in
+        Activity.getAll { (items) in
             if let _items = items {
                 if let item = _items.first {
                     item.trace()
@@ -57,7 +64,7 @@ class ViewController: UIViewController {
     }
     
     func getPeriods() {
-        Item.getAll { (items) in
+        Activity.getAll { (items) in
             if let _items = items {
                 if let item = _items.first {
                     item.trace()
@@ -74,14 +81,14 @@ class ViewController: UIViewController {
     
     // MARK: Items
     func createItem() {
-        let newItem = Item(name: "Caro Fioramonti")
+        let newItem = Activity(name: "Caro Fioramonti")
         newItem.saveToServer(firstTime: true) { (error) in
             if(error==nil){ print("item creado!") }
         }
     }
     
     func getAllItems() {
-        Item.getAll { (items) in
+        Activity.getAll { (items) in
             if let _items = items {
                 for i in _items {
                     i.trace()

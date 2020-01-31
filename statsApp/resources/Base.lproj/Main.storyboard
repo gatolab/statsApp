@@ -19,17 +19,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="epR-Mf-Mvp"/>
                     <connections>
-                        <segue destination="of9-Do-WFj" kind="show" identifier="gotoItems" id="bxq-Ae-59j"/>
+                        <segue destination="of9-Do-WFj" kind="show" identifier="gotoActivities" id="bxq-Ae-59j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="816" y="138"/>
         </scene>
-        <!--Items View Controller-->
+        <!--Activities View Controller-->
         <scene sceneID="yVM-FE-aju">
             <objects>
-                <viewController id="of9-Do-WFj" customClass="ItemsViewController" customModule="statsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="of9-Do-WFj" customClass="ActivitiesViewController" customModule="statsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aw-a3-PKc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,17 +57,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="list" destination="ooU-zq-Xyv" id="8ZH-Qh-qPP"/>
-                        <segue destination="zoO-2C-fmw" kind="show" identifier="gotoManageItem" id="ONv-9Y-FdO"/>
+                        <segue destination="zoO-2C-fmw" kind="show" identifier="gotoManageActivity" id="ONv-9Y-FdO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iuw-a5-CZQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1686.9565217391305" y="137.94642857142856"/>
         </scene>
-        <!--Manage Item View Controller-->
+        <!--Manage Activity View Controller-->
         <scene sceneID="TUH-Bw-Q6k">
             <objects>
-                <viewController id="zoO-2C-fmw" customClass="ManageItemViewController" customModule="statsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zoO-2C-fmw" customClass="ManageActivityViewController" customModule="statsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gmW-K7-rsT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
