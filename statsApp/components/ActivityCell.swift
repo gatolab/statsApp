@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SDWebImage
+
 
 class ActivityCell: UITableViewCell {
 
-    @IBOutlet weak var imgImageView: UIImageView!
+    @IBOutlet weak var actImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
     
@@ -25,7 +27,12 @@ class ActivityCell: UITableViewCell {
     }
     
     func setData(_ item: Activity) {
-        self.imgImageView.image = nil
+        self.actImageView.image = nil
+        if let _image = SDImageCache.shared().imageFromCache(forKey: item.imageURL) {
+            self.actImageView.image = _image
+            self.actImageView.setCircular()
+        }
+        
         self.nameLabel.text = item.name
     }
 }

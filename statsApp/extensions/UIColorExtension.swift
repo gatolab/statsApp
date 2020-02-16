@@ -1,9 +1,9 @@
 //
 //  UIColorExtension.swift
-//  MoneyShots
+//  statsApp
 //
 //  Created by Federico Lopez on 08/10/2019.
-//  Copyright © 2019 Zwiffer Inc. All rights reserved.
+//  Copyright © 2020 Federico Lopez. All rights reserved.
 //
 
 import UIKit

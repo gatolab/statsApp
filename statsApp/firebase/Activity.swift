@@ -8,11 +8,13 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class Activity {
     
     var uid: String = ""
     var name: String = ""
+    var imageURL: String? = nil
     
     var hits: [Hit] = []
     
@@ -21,12 +23,14 @@ class Activity {
     init(name: String) {
         // para crear nuevas actividades de cero
         self.name = name
+        self.imageURL = ""
     }
     
     init(uid: String, data: [String: Any]) {
         // actividades traidas desde la base de datos
         self.uid = uid
         self.name = data["name"] as! String
+        self.imageURL = data["image"] as? String
     }
     
     // MARK: misc
@@ -39,11 +43,20 @@ class Activity {
         }
     }
     
+    private static func storage() -> StorageReference? {
+        if let _uid = AppUser.current?.uid {
+            return Storage.storage().reference().child("activityImages/" + _uid + ".jpg")
+        } else {
+            return nil
+        }
+    }
+    
     // MARK: Actions
     func trace() {
         TRACE("ACTIVITY")
         TRACE("uid: " + self.uid)
         TRACE("name: " + self.name)
+        TRACE("image: " + (self.imageURL ?? "..."))
     }
     
     func saveToServer(firstTime: Bool = false, callback: @escaping (Error?) -> () ) {
@@ -63,6 +76,37 @@ class Activity {
             } else {
                 _collection.document(self.uid).updateData(data) { (error) in
                     callback(error)
+                }
+            }
+        }
+    }
+    
+    //func uploadImage(image: UIImage, callback: @escaping (String?) -> ()) {
+    func uploadImage(image: UIImage, callback: @escaping (Error?) -> ()) {
+        if let _storage = Activity.storage(), let _data = image.jpegData(compressionQuality: 0.9)  {
+            _storage.putData(_data, metadata: nil) { (metaData, error) in
+                if(error==nil) {
+                    _storage.downloadURL { (url, error) in
+                        if(error==nil) {
+                            if let _collection = Activity.collection() {
+                                let data = [
+                                    "image": url!.absoluteString
+                                ] as [String: Any]
+                                
+                                _collection.document(self.uid).updateData(data) { (error) in
+                                    // cache
+                                    let key = SDWebImageManager.shared().cacheKey(for: url)
+                                    SDImageCache.shared().store(image, forKey: key, completion: nil)
+                                    
+                                    callback(error)
+                                }
+                            }
+                        } else {
+                            callback(nil)
+                        }
+                    }
+                } else {
+                    callback(nil)
                 }
             }
         }

@@ -11,4 +11,7 @@ target 'statsApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
 
+  pod 'CropViewController'
+  pod 'SDWebImage', '~> 4.4.4'
+
 end
